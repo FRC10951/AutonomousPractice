@@ -43,10 +43,17 @@ public class Robot extends TimedRobot {
     m_timer.restart();
   }
 
+  private int autonomousCornersDone = 0;
+
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
     double timeElapsed = m_timer.get();
+
+    if (autonomousCornersDone > 3) {
+      m_robotDrive.stopMotor();
+      return;
+    }
     
     // Drive in a 1x1 meter square pattern
     // Each side: 2 seconds forward, 1 second turn
@@ -61,6 +68,7 @@ public class Robot extends TimedRobot {
     } else {
       // Restarts the timer so it repeats forever until disabled
       m_timer.restart();
+      autonomousCornersDone += 1;
     }
   }
 
