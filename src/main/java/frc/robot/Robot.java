@@ -52,33 +52,15 @@ public class Robot extends TimedRobot {
     // Each side: 2 seconds forward, 1 second turn
     // Total cycle: 12 seconds (4 sides × 3 seconds each)
     
-    if (timeElapsed < 2.0) {
-
+    if (timeElapsed < 1) {
+      // Move half speed forward for about a second
       m_robotDrive.arcadeDrive(0.5, 0.0, false);
-    } else if (timeElapsed < 3.0) {
-
-      m_robotDrive.arcadeDrive(0.0, 0.6, false);
-    } else if (timeElapsed < 5.0) {
-
-      m_robotDrive.arcadeDrive(0.5, 0.0, false);
-    } else if (timeElapsed < 6.0) {
-
-      m_robotDrive.arcadeDrive(0.0, 0.6, false);
-    } else if (timeElapsed < 8.0) {
-
-      m_robotDrive.arcadeDrive(0.5, 0.0, false);
-    } else if (timeElapsed < 9.0) {
-
-      m_robotDrive.arcadeDrive(0.0, 0.6, false);
-    } else if (timeElapsed < 11.0) {
-
-      m_robotDrive.arcadeDrive(0.5, 0.0, false);
-    } else if (timeElapsed < 12.0) {
-
-      m_robotDrive.arcadeDrive(0.0, 0.6, false);
+    } else if (timeElapsed < 1.5) {
+      // Rotate counter-clockwise/left at half speed for about half a second
+      m_robotDrive.arcadeDrive(0.0, 0.5, false);
     } else {
-
-      m_robotDrive.stopMotor();
+      // Restarts the timer so it repeats forever until disabled
+      m_timer.restart();
     }
   }
 
